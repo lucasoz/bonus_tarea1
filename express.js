@@ -1,7 +1,17 @@
 import express from 'express'
 import cursos from './cursos'
-
 import yargs from 'yargs'
+
+const servidor = () => {
+  const app = express()
+ 
+  app.get('/', function (req, res) {
+    res.send(texto)
+  })
+   
+  app.listen(3000)
+}
+
 
 const options = {
   id: {
@@ -42,6 +52,7 @@ if (argumentos.i) {
     texto = "El estudiante " + argumentos.n + " con cédula " + argumentos.c + "\n" +
     " esta matriculado en el curso de "+ curso.nombre+" tiene una duración de "+ "\n" +
     curso.duracion+" y cuesta $"+curso.valor
+    servidor()
   } else {
     console.log("El curso seleccionado no existe intente de nuevo.");
     imprimir(0)
@@ -49,12 +60,3 @@ if (argumentos.i) {
 }else{
   imprimir(0)
 }
-
-
-const app = express()
- 
-app.get('/', function (req, res) {
-  res.send(texto)
-})
- 
-app.listen(3000)
